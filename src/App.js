@@ -1,25 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Route, Switch } from 'react-router-dom';
+import { SnackbarProvider } from 'notistack';
+import Home from './HomePage';
+import Currency from './Currency'
+import history from './history';
 
-function App() {
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SnackbarProvider maxSnack={1} >
+      <Router history={history}>
+        <Switch>
+          <Route path="/" component={Home} exact={true} />
+          <Route exact path="/currency" component={Currency} />
+        </Switch>
+      </Router>
+    </SnackbarProvider>
   );
 }
 
